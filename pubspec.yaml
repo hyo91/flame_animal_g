@@ -24,3 +24,5 @@ flutter:
   # asset 이미지 허용
   assets:
     - assets/images/otter_sprite_pack/
+    - assets/images/background/
+  #  파일 불러 올때 여기 등록 된 경로(폴더명)부터 시작해야함.
