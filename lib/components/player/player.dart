@@ -32,10 +32,13 @@ class Player extends SpriteAnimationComponent
     // 개별 PNG 파일들을 스프라이트 애니메이션으로 만들기
     animation = SpriteAnimation.spriteList(
       [
+        // 기본 모션
         Sprite(gameRef.images.fromCache('otter_sprite_pack/otter_idle_1.png')),
         Sprite(gameRef.images.fromCache('otter_sprite_pack/otter_idle_2.png')),
         Sprite(gameRef.images.fromCache('otter_sprite_pack/otter_idle_3.png')),
         Sprite(gameRef.images.fromCache('otter_sprite_pack/otter_idle_4.png')),
+        // 달리기 모션
+        // 점프 모션
       ],
       stepTime: 0.12,
       loop: true,
