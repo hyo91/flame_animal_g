@@ -9,6 +9,9 @@ import 'package:flame/events.dart';
 // 터치 입력이나 키보드 이벤트 처리 ex) 터치시 점프, 오브젝트 끌어서 이동,wasd 이동, 등
 import 'components/background/background1.dart';
 // 배경
+import 'components/background/foreground/foreground.dart';
+// 전경
+import 'components/obstacle/obstacle1.dart';
 
 class MainGame extends FlameGame with HasKeyboardHandlerComponents {
   // HasKeyboardHandlerComponents = 'package:flame/events.dart /키보드 이벤트
@@ -17,6 +20,8 @@ class MainGame extends FlameGame with HasKeyboardHandlerComponents {
   MainGame();
   //
   late Background1 _background1;
+  late Foreground _foreground;
+  late Obstacle1 _obstacle1;
 
   // 나중에 초기화(late) (초기화 : 초기 값을 정함 / reset x ㅡㅡ)
   late Player _player;
@@ -37,12 +42,32 @@ class MainGame extends FlameGame with HasKeyboardHandlerComponents {
       'otter_sprite_pack/otter_idle_2.png',
       'otter_sprite_pack/otter_idle_3.png',
       'otter_sprite_pack/otter_idle_4.png',
+      // 점프 이미지
+      'otter_sprite_pack/otter_jump_1.png',
+      'otter_sprite_pack/otter_jump_2.png',
+      'otter_sprite_pack/otter_jump_3.png',
+      'otter_sprite_pack/otter_jump_4.png',
+      // 달리는 이미지
+      'otter_sprite_pack/otter_run_1.png',
+      'otter_sprite_pack/otter_run_2.png',
+      'otter_sprite_pack/otter_run_3.png',
       'background/parallax-mountain-bg.png',
       'background/parallax-mountain-foreground-trees.png',
       'background/parallax-mountain-montain-far.png',
+      'background/parallax-mountain-mountains.png',
+      'background/parallax-mountain-foreground-trees.png',
+      'background/parallax-mountain-trees.png',
+
+      'obstacle/obstacle1.png', // 장애물 이미지 추가
     ]);
 
     _background1 = Background1(gameSize: size);
+    _foreground = Foreground();
+    // 장애물 추가 (화면 오른쪽에 배치, )
+    _obstacle1 = Obstacle1(
+      position: Vector2(size.x + 100, size.y - 100),
+      size: Vector2(80, 120),
+    );
 
     _player = Player(
       // Player의 초기 위치 (바닥은 해당 값을 기준으로 계산함)
@@ -55,6 +80,10 @@ class MainGame extends FlameGame with HasKeyboardHandlerComponents {
 
     // add : 해당 메서드를 사용하여 게임에 추가.
     add(_background1);
+    add(_foreground);
     add(_player);
+    add(_obstacle1);
   }
 }
+
+// flame 안에서 컴포넌트 로드 되는 순서 ㅐㅟㅐ
